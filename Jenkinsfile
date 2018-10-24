@@ -1,5 +1,6 @@
 pipeline {
-  agent any
+  agent {label 'master'
+  }
 
   stages {
     stage ('Unit Tests') {

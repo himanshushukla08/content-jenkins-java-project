@@ -27,7 +27,7 @@ pipeline {
         sh "cp dist/rectangle_${env.BUILD_NUMBER}.jar /var/www/html/rectangles/all/"
       }
     }
-    stage('Running on centOS')
+    stage('Running on centOS'){
       agent {
         label 'CentOS'
       }
@@ -35,13 +35,12 @@ pipeline {
         sh "wget http://54.173.130.65/rectanles/all/rectangle_${env.BUILD_NUMBER}.jar"
         sh "java -jar rectangle ${env.BUILD_NUMBER}.jar 3 4"
       }
+    }
   }
-
 	post {
 		always {
 			archiveArtifacts artifacts:'dist/*.jar', fingerprint:true
 			}
 		}
-	}
-
+}
 	
